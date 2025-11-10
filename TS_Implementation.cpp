@@ -3,22 +3,25 @@
 int Employee::emp_count = 0;
 const string Employee::company_name = "Roshaan TechSolutions";
 
-Employee::Employee(const char* name, int id, double salary)
-    : emp_id(id), emp_salary(salary) {
+Employee::Employee(const char* name, int id, double salary) {
+    this->emp_id = id;
+    this->emp_salary = salary;
     size_t len = strlen(name) + 1;
-    emp_name = new char[len];
-    strcpy_s(emp_name, len, name);
-    emp_count++;
+    this->emp_name = new char[len];
+    strcpy_s(this->emp_name, len, name);
+    Employee::emp_count++;
 }
+
 
 Employee::Employee(const Employee& other) {
     size_t len = strlen(other.emp_name) + 1;
-    emp_name = new char[len];
-    strcpy_s(emp_name, len, other.emp_name);
-    emp_id = other.emp_id;
-    emp_salary = other.emp_salary;
-    emp_count++;
+    this->emp_name = new char[len];
+    strcpy_s(this->emp_name, len, other.emp_name);
+    this->emp_id = other.emp_id;
+    this->emp_salary = other.emp_salary;
+    Employee::emp_count++;
 }
+
 
 Employee::~Employee() {
     delete[] emp_name;
@@ -43,4 +46,5 @@ void print_emp(Employee e) {
 Employee Employee::make_copy(Employee e) {
     Employee temp(e);
     return temp;
+
 }
